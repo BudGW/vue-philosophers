@@ -16,6 +16,39 @@ Vue.component('navbar', {
     '</nav>'
 });
 
-new Vue({
-    el: '#app'
+Vue.component('philosopher', {
+    props: {
+        philosopher: {
+            type: Object,
+            default: null
+        }
+    },
+    template: '<div style="height:200px;width:200px" class="float-left m-3"><img :src="philosopher.img" class="img-thumbnail img-fluid"/><p>{{philosopher.name}}</p></div>'
 });
+
+var app = new Vue({
+    el: '#app',
+    data: function() {
+        return {
+            philosophers: [{
+                img: 'img/moss.jpg',
+                name: 'Maurice Moss'
+            },{
+                img: 'img/sheldon.jpg',
+                name: 'Sheldon Cooper'
+            },{
+                img: 'img/goldblum.jpg',
+                name: 'Jeff Goldblum'
+            }]
+        }
+    },
+    methods: {
+        showMessage: function() {
+            alert("Alert from Vue !!!")
+        }
+    }
+});
+
+document.getElementById("external-button").onclick = function () {
+    app.showMessage();
+};

@@ -16,9 +16,13 @@
 
             <div class="starter-template">
                 <h1>Philosophers list</h1>
-                <p class="lead">Replace me with the philosophers list</p>
+                <div class="lead mx-auto clearfix" style="width: 800px;height: 300px;">
+                    <philosopher v-for="philosopher in philosophers" :key="philosopher.name" :philosopher="philosopher"></philosopher>
+                </div>
+                <div class="clearfix">
+                    <button type="button" class="btn btn-primary" id="external-button">Call Vue</button>
+                </div>
             </div>
-
         </main>
     </div>
 </div>
