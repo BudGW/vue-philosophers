@@ -2,13 +2,10 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/about">About</router-link> |
+      <router-link to="/philosophers">Philosophers</router-link>
     </div>
     <router-view/>
-    <h1>Philosophers list</h1>
-    <div class="lead mx-auto clearfix" style="width: 800px;height: 300px;">
-      <philosopher v-for="philosopher in philosophers" :key="philosopher.name" :philosopher="philosopher"/>
-    </div>
   </div>
 </template>
 
@@ -17,21 +14,7 @@
 
     export default {
         components: {Philosopher},
-        name: 'HelloWorld',
-        data: function() {
-            return {
-                philosophers: [{
-                    img: require('./assets/moss.jpg'),
-                    name: 'Maurice Moss'
-                },{
-                    img: require('./assets/sheldon.jpg'),
-                    name: 'Sheldon Cooper'
-                },{
-                    img: require('./assets/goldblum.jpg'),
-                    name: 'Jeff Goldblum'
-                }]
-            }
-        }
+        name: 'HelloWorld'
     }
 </script>
 
