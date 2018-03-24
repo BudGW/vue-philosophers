@@ -2,7 +2,7 @@
     <div class="philosophers">
         <h1>Philosophers list</h1>
         <div class="lead mx-auto clearfix" style="width: 800px;height: 300px;">
-            <philosopher v-for="philosopher in philosophers" :key="philosopher.id" :philosopher="philosopher"/>
+            <philosopher class="float-left m-3" v-for="philosopher in philosophers" :key="philosopher.id" :philosopher="philosopher"/>
         </div>
     </div>
 </template>
