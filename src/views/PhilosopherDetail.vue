@@ -7,8 +7,7 @@
                 <quote :class="buildQuoteClass(index)" v-for="(quote, index) in philosopher.quotes" :quote="quote" :key="index"/>
             </div>
         </philosopher>
-        <input v-model="newQuote" type="text"/>
-        <button @click="addQuote">Add Quote</button>
+        <quote-form @new-quote="addQuote"/>
     </div>
 </template>
 
@@ -16,9 +15,11 @@
     import Philosopher from "../components/Philosopher";
     import Quote from "../components/Quote";
     import axios from 'axios'
+    import QuoteForm from "../components/QuoteForm";
 
     export default {
         components: {
+            QuoteForm,
             Quote,
             Philosopher
         },
@@ -31,17 +32,15 @@
         },
         data: function () {
             return {
-                philosopher: {},
-                newQuote: ""
+                philosopher: {}
             }
         },
         methods: {
             buildQuoteClass(index) {
                 return 'quote ' + (index % 2 === 0 ? 'even' : 'odd');
             },
-            addQuote() {
-                this.philosopher.quotes.push(this.newQuote);
-                this.newQuote = "";
+            addQuote(quote) {
+                this.philosopher.quotes.push(quote);
             }
         },
         mounted() {
