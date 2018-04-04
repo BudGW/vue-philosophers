@@ -1,12 +1,14 @@
 <template>
     <div class="philosopher-info">
         <p v-if="!philosopher.real" class="disclaimer">Fictional character</p>
-        <philosopher :philosopher="philosopher">
+        <philosopher class="philosopher" :philosopher="philosopher">
             <div class="quote-list">
                 <h4>Ses citations préférées :</h4>
                 <quote :class="buildQuoteClass(index)" v-for="(quote, index) in philosopher.quotes" :quote="quote" :key="index"/>
             </div>
         </philosopher>
+        <input v-model="newQuote" type="text"/>
+        <button @click="addQuote">Add Quote</button>
     </div>
 </template>
 
@@ -29,12 +31,17 @@
         },
         data: function () {
             return {
-                philosopher: {}
+                philosopher: {},
+                newQuote: ""
             }
         },
         methods: {
             buildQuoteClass(index) {
                 return 'quote ' + (index % 2 === 0 ? 'even' : 'odd');
+            },
+            addQuote() {
+                this.philosopher.quotes.push(this.newQuote);
+                this.newQuote = "";
             }
         },
         mounted() {
@@ -72,5 +79,9 @@
     .disclaimer {
         color: red;
         font-weight: bold;
+    }
+
+    .philosopher {
+        margin: 10px;
     }
 </style>
