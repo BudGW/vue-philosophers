@@ -7,7 +7,7 @@
                 <quote :class="buildQuoteClass(index)" v-for="(quote, index) in philosopher.quotes" :quote="quote" :key="index"/>
             </div>
         </philosopher>
-        <quote-form @new-quote="addQuote"/>
+        <quote-form :philosopher-id="philosopherId" @new-quote="addQuote"/>
     </div>
 </template>
 
