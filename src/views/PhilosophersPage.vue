@@ -2,13 +2,14 @@
     <div class="philosophers">
         <h1>Philosophers list</h1>
         <div class="lead mx-auto clearfix" style="width: 800px;height: 300px;">
-            <philosopher v-for="philosopher in philosophers" :key="philosopher.name" :philosopher="philosopher"/>
+            <philosopher v-for="philosopher in philosophers" :key="philosopher.id" :philosopher="philosopher"/>
         </div>
     </div>
 </template>
 
 <script>
     import Philosopher from '@/components/Philosopher.vue'
+    import axios from 'axios'
 
     export default {
         name: 'PhilosophersPage',
@@ -17,17 +18,14 @@
         },
         data: function() {
             return {
-                philosophers: [{
-                    img: require('../assets/moss.jpg'),
-                    name: 'Maurice Moss'
-                },{
-                    img: require('../assets/sheldon.jpg'),
-                    name: 'Sheldon Cooper'
-                },{
-                    img: require('../assets/goldblum.jpg'),
-                    name: 'Jeff Goldblum'
-                }]
+                philosophers: []
             }
+        },
+        mounted() {
+            axios.get('http://localhost:9090/')
+                .then(response => {
+                    this.philosophers = response.data
+                })
         }
     }
 </script>
